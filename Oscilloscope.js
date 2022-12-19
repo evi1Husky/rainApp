@@ -8,7 +8,7 @@ class Oscilloscope {
     this.canvas.width = this.canvas.clientWidth;
     this.canvas.height = this.canvas.clientHeight;
 
-    this.canvasContext.fillStyle = "rgb(0, 7, 7)";
+    this.canvasContext.fillStyle = "black";
     this.canvasContext.strokeStyle = "rgb(187, 230, 230)";
     this.canvasContext.lineWidth = 1.9;
 

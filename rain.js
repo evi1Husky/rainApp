@@ -1,3 +1,5 @@
+'use strict'
+
 function rnd(max, min) {
   return Math.random() * (max - min) + min
 }

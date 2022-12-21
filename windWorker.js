@@ -3,14 +3,12 @@ import { makeWind } from './rain.js';
 (() => {
   'use strict'
 
-  onmessage = (event) => {
-    if (event.data === 'make noise') {
+  const broadcast = new BroadcastChannel('channel-1');
+
+  broadcast.onmessage = (event) => {
+    if (event.data && event.data.type === 'windWorker') {
       const noise = makeWind();
       postMessage(noise);
-      setInterval(() => {
-        const noise = makeWind();
-        postMessage(noise);
-      }, 960 * 10);
     }
   }
 })();

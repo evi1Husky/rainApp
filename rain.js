@@ -9,11 +9,19 @@ const sampleRate = 48000;
 export function generateRainDrop() {
   const ch0 = new Float32Array(sampleRate);
   const ch1 = new Float32Array(sampleRate);
-  let n0 = rnd(70, rnd(15, 7));
-  let n1 = rnd(70, rnd(15, 7));
+  let n0 = rnd(70, rnd(15, 1));
+  let n1 = rnd(70, rnd(15, 1));
+  const init0 = n0;
+  const init1 = n1;
   for (let index = 0; index < sampleRate; index++) {
-    n0 += rnd(0.06, 0);
-    n1 += rnd(0.06, 0);
+    n0 += rnd(0.05, 0);
+    n1 += rnd(0.05, 0);
+    if (init0 < 7) {
+      n0 += 0.3
+    }
+    if (init1 < 7) {
+      n1 += 0.3
+    }
     ch0[index] = Math.random() * (rnd(3, 1) / n0) - (1 / n0)
     ch1[index] = Math.random() * (rnd(3, 1) / n1) - (1 / n1)
     ch0[index] *= rnd(35, 0);
@@ -28,8 +36,8 @@ export function generateRainDropFar() {
   let n0 = rnd(120, 70);
   let n1 = rnd(120, 70);
   for (let index = 0; index < sampleRate; index++) {
-    n0 += rnd(0.06, 0);
-    n1 += rnd(0.06, 0);
+    n0 += rnd(0.05, 0);
+    n1 += rnd(0.05, 0);
     ch0[index] = Math.random() * (rnd(3, 1) / n0) - (1 / n0)
     ch1[index] = Math.random() * (rnd(3, 1) / n1) - (1 / n1)
     ch0[index] *= rnd(40, 0);

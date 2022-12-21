@@ -25,7 +25,6 @@ import Oscilloscope from './Oscilloscope.js';
   playButton.onclick = () => {
     audioContext.resume();
     messengerWorker.postMessage('make rain');
-    windWorker.postMessage('make noise')
     playButton.style.display = 'none';
     stopButton.style.display = 'block';
   }

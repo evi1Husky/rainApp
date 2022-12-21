@@ -13,7 +13,8 @@ oscilloscope.start();
 
 const rainWorker = new Worker('rainWorker.js', {type: 'module'});
 const rainWorkerFar = new Worker('rainWorkerFar.js', {type: 'module'});
-const messengerWorker = new Worker('messengerWorker.js');
+const messengerWorker = new Worker('messengerWorker.js', {type: 'module'});
+const windWorker = new Worker('windWorker.js', {type: 'module'});
 
 const playButton = document.getElementById('play-button');
 const stopButton = document.getElementById('stop-button');
@@ -21,6 +22,7 @@ const stopButton = document.getElementById('stop-button');
 playButton.onclick = () => {
   audioContext.resume();
   messengerWorker.postMessage('make rain');
+  windWorker.postMessage('make noise')
   playButton.style.display = 'none';
   stopButton.style.display = 'block';
 }
@@ -29,8 +31,7 @@ stopButton.onclick = () => {
   window.location.reload();
 }
 
-function createRainDrop(channelData) {
-  const sampleRate = audioContext.sampleRate;
+function createSound(channelData, sampleRate) {
   const buffer = audioContext.createBuffer(2, sampleRate, audioContext.sampleRate);
   buffer.copyToChannel(channelData[0], 0);
   buffer.copyToChannel(channelData[1], 1);
@@ -40,13 +41,19 @@ function createRainDrop(channelData) {
 }
 
 rainWorker.onmessage = (event) => {
-  let noise = createRainDrop(event.data)
-  noise.connect(gainNode);
-  noise.start();
+  let rainDrop = createSound(event.data, audioContext.sampleRate)
+  rainDrop.connect(gainNode);
+  rainDrop.start();
 }
 
 rainWorkerFar.onmessage = (event) => {
-  let noise = createRainDrop(event.data)
-  noise.connect(gainNode)
-  noise.start()
+  let rainDrop = createSound(event.data, audioContext.sampleRate)
+  rainDrop.connect(gainNode)
+  rainDrop.start()
+}
+
+windWorker.onmessage = (event) => {
+  let wind = createSound(event.data, audioContext.sampleRate * 10);
+  wind.connect(gainNode);
+  wind.start();
 }

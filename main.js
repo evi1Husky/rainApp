@@ -41,19 +41,19 @@ function createSound(channelData, sampleRate) {
 }
 
 rainWorker.onmessage = (event) => {
-  let rainDrop = createSound(event.data, audioContext.sampleRate)
+  const rainDrop = createSound(event.data, audioContext.sampleRate)
   rainDrop.connect(gainNode);
   rainDrop.start();
 }
 
 rainWorkerFar.onmessage = (event) => {
-  let rainDrop = createSound(event.data, audioContext.sampleRate)
+  const rainDrop = createSound(event.data, audioContext.sampleRate)
   rainDrop.connect(gainNode)
   rainDrop.start()
 }
 
 windWorker.onmessage = (event) => {
-  let wind = createSound(event.data, audioContext.sampleRate * 10);
+  const wind = createSound(event.data, audioContext.sampleRate * 10);
   wind.connect(gainNode);
   wind.start();
 }

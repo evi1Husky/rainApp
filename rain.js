@@ -14,8 +14,8 @@ export function generateRainDrop() {
     n1 += rnd(0.06, 0);
     ch0[index] = Math.random() * (rnd(3, 1) / n0) - (1 / n0)
     ch1[index] = Math.random() * (rnd(3, 1) / n1) - (1 / n1)
-    ch0[index] *= rnd(30, 0);
-    ch1[index] *= rnd(30, 0);
+    ch0[index] *= rnd(35, 0);
+    ch1[index] *= rnd(35, 0);
   }
   return [ch0, ch1];
 }
@@ -30,8 +30,8 @@ export function generateRainDropFar() {
     n1 += rnd(0.06, 0);
     ch0[index] = Math.random() * (rnd(3, 1) / n0) - (1 / n0)
     ch1[index] = Math.random() * (rnd(3, 1) / n1) - (1 / n1)
-    ch0[index] *= rnd(30, 0);
-    ch1[index] *= rnd(30, 0);
+    ch0[index] *= rnd(40, 0);
+    ch1[index] *= rnd(40, 0);
   }
   return [ch0, ch1];
 }
@@ -78,7 +78,7 @@ export function makeWind() {
       const whiteNoise = Math.random() * 2 - 1;
       output[index] = ((lastOut + (rnd(10, 0) * whiteNoise)) / rnd(1.02, 0.99));
       lastOut = output[index];
-      output[index] /= lastGain / 1300;
+      output[index] /= lastGain / 1400;
       if (gainTop) {
         lastGain -= 1;
         if (lastGain === (sampleRate) / gainRnd) {
@@ -88,7 +88,7 @@ export function makeWind() {
       }
       if (gainBottom) {
         lastGain += 1;
-        if (lastGain === (sampleRate / gainRnd)) {
+        if (lastGain === (sampleRate)) {
           gainBottom = false;
           gainTop = true;
         }

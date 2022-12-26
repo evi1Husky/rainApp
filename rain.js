@@ -17,10 +17,10 @@ export function generateRainDrop() {
     n0 += rnd(0.05, 0);
     n1 += rnd(0.05, 0);
     if (init0 < 7) {
-      n0 += 0.3
+      n0 += 0.3;
     }
     if (init1 < 7) {
-      n1 += 0.3
+      n1 += 0.3;
     }
     ch0[index] = Math.random() * (rnd(3, 1) / n0) - (1 / n0)
     ch1[index] = Math.random() * (rnd(3, 1) / n1) - (1 / n1)

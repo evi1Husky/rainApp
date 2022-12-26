@@ -12,12 +12,16 @@
   <link rel="modulepreload" href="rainWorkerFar.js">
   <link rel="modulepreload" href="rainWorker.js">
   <link rel="modulepreload" href="Oscilloscope.js">
+  <script type="module" src="knob.js"></script>
   <title>rain app</title>
 </head>
   <body>
     <canvas id="oscilloscope"></canvas>
-    <a id ="play-button" class="play-button">play</a>
-    <a id ="stop-button" class="stop-button">stop</a>
+    <div class="control-panel">
+      <a id ="play-button" class="play-button">play</a>
+      <a id ="stop-button" class="stop-button">stop</a>
+      <control-knob id="gain-knob"></control-knob>
+    </div>
     <script src="main.js" type="module"></script>
   </body>
 </html>

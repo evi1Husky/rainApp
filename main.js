@@ -14,6 +14,18 @@ import Oscilloscope from './Oscilloscope.js';
   const oscilloscope = new Oscilloscope(analyserNode);
   oscilloscope.start();
 
+  const gainKnob = document.getElementById('gain-knob');
+  gainKnob.value = 50
+  gainKnob.lightColor = '#bccae1'
+
+  const gainControl = () => {
+    let val = gainKnob.currentValue / 100
+    gainNode.gain.value = val
+  }
+
+  gainKnob.knobEventHandler = gainControl;
+
+
   const rainWorker = new Worker('rainWorker.js', {type: 'module'});
   const rainWorkerFar = new Worker('rainWorkerFar.js', {type: 'module'});
   const messengerWorker = new Worker('messengerWorker.js', {type: 'module'});

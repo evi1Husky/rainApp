@@ -4,6 +4,7 @@ import Oscilloscope from './Oscilloscope.js';
   'use strict'
 
   const audioContext = new AudioContext();
+  audioContext.resume();
   const analyserNode = audioContext.createAnalyser();
   const gainNode = audioContext.createGain();
   gainNode.connect(audioContext.destination);
@@ -19,12 +20,11 @@ import Oscilloscope from './Oscilloscope.js';
   gainKnob.lightColor = '#bccae1'
 
   const gainControl = () => {
-    let val = gainKnob.currentValue / 100
+    const val = gainKnob.currentValue / 100
     gainNode.gain.value = val
   }
 
   gainKnob.knobEventHandler = gainControl;
-
 
   const rainWorker = new Worker('rainWorker.js', {type: 'module'});
   const rainWorkerFar = new Worker('rainWorkerFar.js', {type: 'module'});

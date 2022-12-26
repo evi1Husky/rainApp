@@ -7,6 +7,10 @@ html {
   font-family: 'Andale Mono', monospace, "Arial", sans-serif;
 }
 
+:root {
+  --font: font-family: 'Andale Mono', monospace, "Arial", sans-serif;
+}
+
 body {
   box-sizing: border-box;
   font-size: 1.6rem;
@@ -38,19 +42,22 @@ canvas {
   gap: 6rem;
 }
 
-a {
+.play-button, .stop-button{
+  font-family: var(--font);
   color: #7d8898;
   font-size: 2.3rem;
   bottom: 13%;
   cursor: default;
+  background: none;
+  border: none;
 }
 
-a:hover {
+.play-button:hover, .stop-button:hover {
   color: #bccae1;
   text-shadow: 0px 0px 35px #bccae1;
 }
 
-a:active {
+.play-button:active, .stop-button:active {
   color: #d6e5ff;
   text-shadow: 0px 0px 35px #d6e5ff;
 }

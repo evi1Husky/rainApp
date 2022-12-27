@@ -35,7 +35,7 @@ canvas {
 
 .control-panel {
   position: absolute;
-  width: 30rem;
+  width: 31rem;
   height: 10rem;
   display: flex;
   align-items: center;
@@ -55,6 +55,10 @@ canvas {
   cursor: default;
   background: none;
   border: none;
+}
+
+.lamp {
+  margin-right: 0.8rem;
 }
 
 .play-button:hover, .stop-button:hover {

@@ -6,11 +6,21 @@ import Oscilloscope from './Oscilloscope.js';
   const audioContext = new AudioContext();
   const analyserNode = audioContext.createAnalyser();
   const gainNode = audioContext.createGain();
+  const gainWind = audioContext.createGain();
+  const gainRainFar = audioContext.createGain();
+  const gainRainNear = audioContext.createGain();
+  gainWind.connect(gainNode);
+  gainRainNear.connect(gainNode);
+  gainRainFar.connect(gainNode);
   gainNode.connect(audioContext.destination);
   gainNode.connect(analyserNode);
 
   analyserNode.fftSize = 1024;
+
   gainNode.gain.value = 0.5;
+  gainWind.gain.value = 1.5;
+  gainRainNear.gain.value = 0.7;
+  gainRainFar.gain.value = 1;
 
   const oscilloscope = new Oscilloscope(analyserNode);
   oscilloscope.idle()
@@ -61,19 +71,19 @@ import Oscilloscope from './Oscilloscope.js';
 
   rainWorker.onmessage = (event) => {
     const rainDrop = createSound(event.data, audioContext.sampleRate)
-    rainDrop.connect(gainNode);
+    rainDrop.connect(gainRainNear);
     rainDrop.start();
   }
 
   rainWorkerFar.onmessage = (event) => {
     const rainDrop = createSound(event.data, audioContext.sampleRate)
-    rainDrop.connect(gainNode)
+    rainDrop.connect(gainRainFar)
     rainDrop.start()
   }
 
   windWorker.onmessage = (event) => {
     const wind = createSound(event.data, audioContext.sampleRate * 10);
-    wind.connect(gainNode);
+    wind.connect(gainWind);
     wind.start();
   }
 })();

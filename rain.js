@@ -62,12 +62,12 @@ export function noiseFilter(in0, in1) {
   return [noise(in0), noise(in1)]
 }
 
-export function lowPass(in0, in1) {
+export function lowPass(in0, in1, val) {
   function lowPass(input) {
     const output = new Float32Array(sampleRate);
     var lastOut = 0.0;
     for (var i = 0; i < sampleRate; i++) {
-        output[i] = (input[i] + lastOut) / 2.0;
+        output[i] = (input[i] + lastOut) / val;
         lastOut = output[i];
     }
     return output;

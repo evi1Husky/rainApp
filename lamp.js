@@ -25,7 +25,7 @@ customElements.define('signal-lamp',
         box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
         will-change: filter;
         filter: drop-shadow(
-          0 0 17px rgba(var(--R), var(--G), var(--B), calc(var(--alpha) - 0.3)));
+          0 0 17px rgba(var(--R), var(--G), var(--B), calc(var(--alpha) - 0.1)));
       }
       </style>
       <div class="lamp"></div>`;
@@ -66,17 +66,15 @@ customElements.define('signal-lamp',
 
       this.analyserNode.getByteFrequencyData(this.waveformData);
 
-      // const average = (this.waveformData.reduce((a,c) => a + c, 0) / this.length);
-      // const normalized = (average / 0.255) / 100
-      // if (normalized < 0.40) {
-      //  this.style.setProperty('--alpha', 0.07);
-      // } else {
-      //  this.style.setProperty('--alpha', normalized);
-      // }
-      const rnd = this.waveformData[Math.floor(Math.random()*this.length)];
-      const map = rnd / 255;
-      const out = map * 1.2;
-      this.style.setProperty('--alpha', out);
+      const rnd = Math.floor(Math.random() * (2 - 0) + 0)
+      if (rnd === 1) {
+        const val = this.waveformData[Math.floor(Math.random()*this.length)];
+        const map = val / 255;
+        const out = map * 1.2;
+        this.style.setProperty('--alpha', out);
+      } else if (this.waveformData[0]) {
+        this.style.setProperty('--alpha', 0.07);
+      }
     }
 
     setColor(...RGB) {

@@ -9,7 +9,7 @@ import Oscilloscope from './Oscilloscope.js';
   gainNode.connect(audioContext.destination);
   gainNode.connect(analyserNode);
 
-  analyserNode.fftSize = 2048;
+  analyserNode.fftSize = 1024;
   gainNode.gain.value = 0.5;
 
   const oscilloscope = new Oscilloscope(analyserNode);

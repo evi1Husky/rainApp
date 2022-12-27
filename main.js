@@ -4,16 +4,16 @@ import Oscilloscope from './Oscilloscope.js';
   'use strict'
 
   const audioContext = new AudioContext();
-  audioContext.resume();
   const analyserNode = audioContext.createAnalyser();
   const gainNode = audioContext.createGain();
   gainNode.connect(audioContext.destination);
   gainNode.connect(analyserNode);
 
+  analyserNode.fftSize = 2048;
   gainNode.gain.value = 0.5;
 
   const oscilloscope = new Oscilloscope(analyserNode);
-  oscilloscope.start();
+  oscilloscope.idle()
 
   const gainKnob = document.getElementById('gain-knob');
   gainKnob.value = 50
@@ -26,6 +26,9 @@ import Oscilloscope from './Oscilloscope.js';
 
   gainKnob.knobEventHandler = gainControl;
 
+  const lamp = document.querySelector('.lamp');
+  lamp.analyser = analyserNode;
+
   const rainWorker = new Worker('rainWorker.js', {type: 'module'});
   const rainWorkerFar = new Worker('rainWorkerFar.js', {type: 'module'});
   const messengerWorker = new Worker('messengerWorker.js', {type: 'module'});
@@ -36,6 +39,8 @@ import Oscilloscope from './Oscilloscope.js';
 
   playButton.onclick = () => {
     audioContext.resume();
+    oscilloscope.start();
+    lamp.start();
     messengerWorker.postMessage('make rain');
     playButton.style.display = 'none';
     stopButton.style.display = 'block';

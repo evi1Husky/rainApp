@@ -13,6 +13,7 @@
   <link rel="modulepreload" href="rainWorker.js">
   <link rel="modulepreload" href="Oscilloscope.js">
   <script type="module" src="knob.js"></script>
+  <script type="module" src="lamp.js"></script>
   <title>rain app</title>
 </head>
   <body>
@@ -20,6 +21,7 @@
     <div class="control-panel">
       <button id ="play-button" class="play-button">play</button>
       <button id ="stop-button" class="stop-button">stop</button>
+      <signal-lamp class="lamp"></signal-lamp>
       <control-knob id="gain-knob"></control-knob>
     </div>
     <script src="main.js" type="module"></script>

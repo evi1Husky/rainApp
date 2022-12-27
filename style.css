@@ -11,6 +11,14 @@ html {
   --font: font-family: 'Andale Mono', monospace, "Arial", sans-serif;
 }
 
+*.unselectable, button.unselectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 body {
   box-sizing: border-box;
   font-size: 1.6rem;
@@ -39,7 +47,7 @@ canvas {
   background-color: #171920;
   border-radius: 1rem;
   border: 0.09rem solid #3a3f46;
-  gap: 6rem;
+  gap: 4rem;
 }
 
 .play-button, .stop-button{

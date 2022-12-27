@@ -9,7 +9,7 @@ import { noiseFilter } from './rain.js';
 
   broadcast.onmessage = (event) => {
     if (event.data && event.data.type === 'rainWorker') {
-      const rainDrop = lowPass(...noiseFilter(...generateRainDrop()), 1.5);
+      const rainDrop = lowPass(...noiseFilter(...generateRainDrop()), 1.4);
       postMessage(rainDrop);
     }
   }

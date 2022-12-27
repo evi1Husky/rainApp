@@ -9,8 +9,8 @@ const sampleRate = 48000;
 export function generateRainDrop() {
   const ch0 = new Float32Array(sampleRate);
   const ch1 = new Float32Array(sampleRate);
-  let n0 = rnd(70, rnd(15, 1));
-  let n1 = rnd(70, rnd(15, 1));
+  let n0 = rnd(70, 6);
+  let n1 = rnd(70, 6);
   const init0 = n0;
   const init1 = n1;
   for (let index = 0; index < sampleRate; index++) {
